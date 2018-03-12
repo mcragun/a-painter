@@ -150,6 +150,21 @@ AFRAME.registerSystem('painter', {
         });
       }
 
+      if (event.keyCode === 80) {
+        // Print Camera (p)
+        console.log("\n\nPRINTING CAMERA...")
+        console.log("World Direction:")
+        console.log(self.sceneEl.camera.getWorldDirection());
+        console.log("World Position:")
+        console.log(self.sceneEl.camera.getWorldPosition());
+        console.log("World Rotation:")
+        console.log(self.sceneEl.camera.getWorldRotation());
+        console.log("World Quaternion:")
+        console.log(self.sceneEl.camera.getWorldQuaternion());
+        console.log("World Matrix:")
+        console.log(self.sceneEl.camera.matrix);
+      }
+
       if (event.keyCode === 84) {
         // Random stroke (t)
         self.brushSystem.generateTestLines();
@@ -170,6 +185,7 @@ AFRAME.registerSystem('painter', {
         self.save();
       }
       if (event.keyCode === 74) { // j - save json
+        console.log("Downloading JSON...")
         self.saveJSON();
       }
       if (event.keyCode === 79) { // o - toggle template objects+images visibility
@@ -188,6 +204,7 @@ AFRAME.registerSystem('painter', {
   },
   saveJSON: function () {
     var json = this.brushSystem.getJSON();
+    console.log(this.sceneEl.camera.matrix);
     var blob = new Blob([JSON.stringify(json)], {type: 'application/json'});
     saveAs(blob, 'demo.json');
   },
